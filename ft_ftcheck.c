@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 18:51:49 by smeza-ro          #+#    #+#             */
-/*   Updated: 2026/01/11 19:57:37 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2026/01/11 21:33:17 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,18 @@ int print_str(char *s)
 
 int	print_hex(unsigned int i)
 {
-	int		mod;
-	int		i;
 	char	*hex;
+	int		len;
 
 	hex = "0123456789abcdef";
-	mod = 0;
-	i = 0;
-	while (mod)
-	{
-		
-	}
+	len = 0;
+	if (i > 15)
+		len += print_hex(i / 16);
+	len += print_char(hex[i % 16]);
+	return (len);
 }
 
 int main()
 {
-	printf("%x\n", 256);
+	printf("%d\n", print_hex(256));
 }
