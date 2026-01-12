@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:43:10 by smeza-ro          #+#    #+#             */
-/*   Updated: 2026/01/08 19:13:03 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2026/01/12 14:43:31 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 # include <stdarg.h>
 
 int	ft_printf(const char *s, ...);
-int print_char(char c);
-int print_str(char *s);
+int	put_char(char c);
+int put_str(char *s);
+int	put_nbr(int i);
+int	put_hex(unsigned int i, char c);
+int	put_ptr(void *p);
 
 #endif

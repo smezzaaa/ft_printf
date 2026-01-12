@@ -6,11 +6,22 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:43:42 by smeza-ro          #+#    #+#             */
-/*   Updated: 2026/01/08 19:12:44 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2026/01/12 14:45:16 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	put_uns_int(unsigned int i)
+{
+	int			len;
+
+	len = 0;
+	if (i > 10)
+		len += put_nbr(i / 10);
+	len += put_char(i % 10);
+	return (len);
+}
 
 static int	ft_check(char c, va_list ap)
 {
@@ -18,11 +29,25 @@ static int	ft_check(char c, va_list ap)
 	
 	len = 0;
 	if (c == 'c')
-		len = print_char(va_arg(ap, int));
-	if (c == 's')
-		len = print_str(va_arg(ap, char *));
-	if (c == 'd')
-		len = print_int
+		len = put_char(va_arg(ap, int));
+	else if (c == 's')
+		len = put_str(va_arg(ap, char *));
+	else if (c == 'd' || c == 'i')
+		len = put_nbr(va_arg(ap, int));
+	else if (c == 'x' || c == 'X')
+		len = put_hex(va_arg(ap, unsigned int), c);
+	else if (c == 'p')
+	{
+		if (va_arg(ap, void*) == NULL)
+			return (write(1, "(nil)", 5));
+		len = write(1, "0x", 2);
+		len += put_ptr(va_arg(ap, void *));
+	}
+	else if (c == 'u')
+		len = put_uns_int(va_arg(ap, unsigned int));
+	else if (c == '%')
+		len = write(1, "%", 1);
+	return (len);
 }
 
 int	ft_printf(const char *s, ...)
@@ -49,8 +74,8 @@ int	ft_printf(const char *s, ...)
 	va_end(ap);
 	return (result);
 }
-
+/* 
 int	main()
 {
-	printf("ciao %d %s", 1234, "ciao");
-}
+	printf("ciao %%");
+} */
