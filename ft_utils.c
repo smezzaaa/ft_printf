@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 18:51:49 by smeza-ro          #+#    #+#             */
-/*   Updated: 2026/01/13 12:22:55 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2026/01/13 12:35:11 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,3 @@ int	put_ptr(void *p)
 	len += put_char(hex[num % 16]);
 	return (len);
 }
-
-/* int main()
-{
-	printf("len : %d\n", put_nbr(-123));
-} */
