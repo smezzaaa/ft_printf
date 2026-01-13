@@ -6,7 +6,7 @@
 #    By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 17:52:39 by smeza-ro          #+#    #+#              #
-#    Updated: 2026/01/08 17:53:25 by smeza-ro         ###   ########.fr        #
+#    Updated: 2026/01/12 14:47:51 by smeza-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 HEADER = ft_printf.h
-SRCS =
+SRCS = ft_utils.c ft_printf.c
 
 OBJS = ${SRCS:.c=.o}
 

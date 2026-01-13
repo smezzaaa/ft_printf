@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:43:42 by smeza-ro          #+#    #+#             */
-/*   Updated: 2026/01/12 14:45:16 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2026/01/13 12:20:35 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static int	put_uns_int(unsigned int i)
 {
-	int			len;
+	int	len;
 
 	len = 0;
-	if (i > 10)
+	if (i >= 10)
 		len += put_nbr(i / 10);
-	len += put_char(i % 10);
+	len += put_char((i % 10) + '0');
 	return (len);
 }
 
 static int	ft_check(char c, va_list ap)
 {
 	int	len;
-	
+
 	len = 0;
 	if (c == 'c')
 		len = put_char(va_arg(ap, int));
@@ -37,12 +37,7 @@ static int	ft_check(char c, va_list ap)
 	else if (c == 'x' || c == 'X')
 		len = put_hex(va_arg(ap, unsigned int), c);
 	else if (c == 'p')
-	{
-		if (va_arg(ap, void*) == NULL)
-			return (write(1, "(nil)", 5));
-		len = write(1, "0x", 2);
 		len += put_ptr(va_arg(ap, void *));
-	}
 	else if (c == 'u')
 		len = put_uns_int(va_arg(ap, unsigned int));
 	else if (c == '%')
@@ -59,8 +54,7 @@ int	ft_printf(const char *s, ...)
 	i = 0;
 	result = 0;
 	va_start(ap, s);
-	
-	while(s[i])
+	while (s[i])
 	{
 		if (s[i] == '%' && s[i + 1])
 		{
