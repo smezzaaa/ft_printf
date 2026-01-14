@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:43:42 by smeza-ro          #+#    #+#             */
-/*   Updated: 2026/01/13 12:30:59 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2026/01/14 15:39:56 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	ft_printf(const char *s, ...)
 	i = 0;
 	result = 0;
 	va_start(ap, s);
+	if (!s)
+		return(-1);
 	while (s[i])
 	{
 		if (s[i] == '%' && s[i + 1])
